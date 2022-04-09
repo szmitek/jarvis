@@ -1,6 +1,7 @@
 import pyttsx3 #pip install pyttsx3
 import speech_recognition as sr #pip install speechRecognition
 import datetime
+import wikipedia #pip install wikipedia
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices') #JAK KTOS USTAWI GLOS JARVISA MA ODEMNIE PIWO ~~ Szmitek
@@ -47,4 +48,11 @@ if __name__ == "__main__":
     while True:
         query = takeCommand().lower()
 
+        if "bye" in query: break
 
+        if "search" in query and "in wikipedia" in query:
+            try:
+                results = wikipedia.summary(query.split(" ")[1], sentences=2)
+                print(results)
+            except Exception as e:
+                print("sorry! i couldn't find anything")
