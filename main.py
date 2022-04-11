@@ -1,6 +1,9 @@
 import pyttsx3 #pip install pyttsx3
 import speech_recognition as sr #pip install speechRecognition
 import datetime
+import webbrowser
+
+
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices') #JAK KTOS USTAWI GLOS JARVISA MA ODEMNIE PIWO ~~ Szmitek
@@ -32,12 +35,12 @@ def takeCommand():
 
     try:
         print("Recognizing...")
-        query = r.recognize_google(audio, language='en-in')
+        query = r.recognize_google(audio, language='pl')
         print(f"User said: {query}\n")
 
     except Exception as e:
         # print(e)
-        print("Say that again please...")
+        print("Proszę powtórz...")
         return "None"
     return query
 
@@ -46,5 +49,8 @@ if __name__ == "__main__":
     wishMe()
     while True:
         query = takeCommand().lower()
+
+        if 'otwórz youtube' in query:
+            webbrowser.open("youtube.com")
 
 
