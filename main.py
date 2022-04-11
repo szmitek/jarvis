@@ -1,5 +1,7 @@
-import pyttsx3 #pip install pyttsx3
-import speech_recognition as sr #pip install speechRecognition
+#creating package list: pip freeze > requirements.txt
+#pip install -r requirements.txt
+import pyttsx3
+import speech_recognition as sr
 import datetime
 
 engine = pyttsx3.init('sapi5')
