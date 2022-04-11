@@ -54,4 +54,5 @@ if __name__ == "__main__":
         if "wyszukaj" in query and "wikipedii" in query:
             speak(doYourTask.searchInWikipedia(query))
 
-        if "prognoza pogody" in query: print(doYourTask.checkWeatherForecast(query))
+        if "prognoza pogody" in query:
+            speak(doYourTask.checkWeatherForecast(query))
