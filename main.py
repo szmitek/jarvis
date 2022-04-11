@@ -6,7 +6,7 @@ import doYourTask
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices') #JAK KTOS USTAWI GLOS JARVISA MA ODEMNIE PIWO ~~ Szmitek
 engine.setProperty('voice', voices[0].id)
-
+# engine.setProperty('rate', 0.1)
 
 def speak(audio):
     engine.say(audio)
@@ -17,6 +17,7 @@ def wishMe():
     hour = int(datetime.datetime.now().hour)
     if hour>=0 and hour<19:
         speak("Dzień dobry ser!")
+        # speak("ah shit here we go again")
     else:
         speak("Dobry wieczór ser!")
 
@@ -33,7 +34,7 @@ def takeCommand():
 
     try:
         print("Recognizing...")
-        query = r.recognize_google(audio, language='en-in')
+        query = r.recognize_google(audio, language='pl')
         print(f"User said: {query}\n")
 
     except Exception as e:
@@ -48,7 +49,9 @@ if __name__ == "__main__":
     while True:
         query = takeCommand().lower()
 
-        if "bye" in query: break
+        if "do widzenia" in query: break
 
-        if "search" in query and "in wikipedia" in query:
-            doYourTask.searchInWikipedia(query)
+        if "wyszukaj" in query and "wikipedii" in query:
+            speak(doYourTask.searchInWikipedia(query))
+
+        if "prognoza pogody" in query: print(doYourTask.checkWeatherForecast(query))
