@@ -51,8 +51,11 @@ if __name__ == "__main__":
 
         if "do widzenia" in query: break
 
-        if "wyszukaj" in query and "wikipedii" in query:
+        elif "wyszukaj" in query and "wikipedii" in query:
             speak(doYourTask.searchInWikipedia(query))
 
-        if "prognoza pogody" in query:
+        elif "prognoza pogody" in query:
             speak(doYourTask.checkWeatherForecast(query))
+        
+        elif "zakażeń covid" in query:
+            speak(doYourTask.checkCovidStatistics(query))
