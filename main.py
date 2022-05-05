@@ -2,7 +2,8 @@ import pyttsx3  # pip install pyttsx3
 import speech_recognition as sr  # pip install speechRecognition
 import datetime
 import webbrowser
-import googlesearch
+from local_files import open_spotify, open_discord, open_calculator, open_pycharm
+
 import doYourTask
 
 # Voice API and voice engine module
@@ -90,3 +91,17 @@ if __name__ == "__main__":
         # function calling number of current covid-19 infections
         elif "zakażeń covid" in query:
             speak(doYourTask.checkCovidStatistics(query))
+
+
+        # functions to open local files
+        elif 'otwórz python' in query:
+            open_pycharm()
+
+        elif 'otwórz spotify' in query:
+            open_spotify()
+
+        elif 'otwórz discord' in query:
+            open_discord()
+
+        elif 'otwórz kalkulator' in query:
+            open_calculator()
