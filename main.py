@@ -54,28 +54,33 @@ if __name__ == "__main__":
         # function calling to open youtube
         if 'otwórz youtube' in query:
             webbrowser.open("youtube.com")
-            # function calling to google
+
+        # function calling to google
         elif 'otwórz google' in query:
             webbrowser.open("google.com")
-            # function that allows you to find specific results for a google search
+
+        # function that allows you to find specific results for a google search
         elif 'wyszukaj w google' in query:
             speak("szukam")
-            query = takeCommand()
-            for j in googlesearch(query, tld="com", num=15, stop=10, pause=3):
-                print(j)
-                # first_link = googlesearch.search(query, num=1, tld="co.in", stop=1, pause=0)
-            # for i in first_link:
-            #     webbrowser.open(i)
-            # result = first_link
+            url = 'https://www.google.com/search?q='
+            search_url = url + query
+            webbrowser.open(search_url)
+
         # function calling to close the program
         if "do widzenia" in query:
             break
+
+
         # function calling for a wikipedia search
         elif "wyszukaj" in query and "wikipedii" in query:
             speak(doYourTask.searchInWikipedia(query))
+
+
         # function to call a weather forecast
         elif "prognoza pogody" in query:
             speak(doYourTask.checkWeatherForecast(query))
+
+
         # function calling number of current covid-19 infections
         elif "zakażeń covid" in query:
             speak(doYourTask.checkCovidStatistics(query))

@@ -43,7 +43,7 @@ def checkCovidStatistics(query):
     try:
         req = requests.get(get_req)
     except Exception as e:
-        textToRead = "Przykro mi. Nie znalazłem tego czego o co prosisz."
+        textToRead = "Przykro mi. Nie znalazłem tego o co prosisz."
     else:
         req_json = req.json()
         if type == "kraj":
