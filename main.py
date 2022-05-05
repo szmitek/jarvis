@@ -1,13 +1,13 @@
-import pyttsx3 #pip install pyttsx3
-import speech_recognition as sr #pip install speechRecognition
+import pyttsx3  # pip install pyttsx3
+import speech_recognition as sr  # pip install speechRecognition
 import datetime
 import webbrowser
-
-
+import googlesearch
 import doYourTask
 
+# Voice API and voice engine module
 engine = pyttsx3.init('sapi5')
-voices = engine.getProperty('voices') #JAK KTOS USTAWI GLOS JARVISA MA ODEMNIE PIWO ~~ Szmitek
+voices = engine.getProperty('voices')  # JAK KTOS USTAWI GLOS JARVISA MA ODEMNIE PIWO ~~ Szmitek
 engine.setProperty('voice', voices[0].id)
 
 
@@ -16,26 +16,27 @@ def speak(audio):
     engine.runAndWait()
 
 
-def wishMe():
+# welcome function that check the time and greets us politely depending on the time of day
+def welcome_function():
     hour = int(datetime.datetime.now().hour)
-    if hour>=0 and hour<19:
+    if hour >= 0 and hour < 19:
         speak("Dzień dobry ser!")
     else:
         speak("Dobry wieczór ser!")
 
     speak("Jestem Jarvis. Jak mogę ci pomóc?")
 
-def takeCommand():
-    #It takes microphone input from the user and returns string output
 
+# It takes microphone input from the user and returns string output
+def takeCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        print("Listening...")
+        print("Slucham...")
         r.pause_threshold = 1
         audio = r.listen(source)
 
     try:
-        print("Recognizing...")
+        print("Rozpoznaje...")
         query = r.recognize_google(audio, language='pl')
         print(f"User said: {query}\n")
 
@@ -47,20 +48,34 @@ def takeCommand():
 
 
 if __name__ == "__main__":
-    wishMe()
+    welcome_function()
     while True:
         query = takeCommand().lower()
-
+        # function calling to open youtube
         if 'otwórz youtube' in query:
             webbrowser.open("youtube.com")
-
-        if "do widzenia" in query: break
-
+            # function calling to google
+        elif 'otwórz google' in query:
+            webbrowser.open("google.com")
+            # function that allows you to find specific results for a google search
+        elif 'wyszukaj w google' in query:
+            speak("szukam")
+            query = takeCommand()
+            for j in googlesearch(query, tld="com", num=15, stop=10, pause=3):
+                print(j)
+                # first_link = googlesearch.search(query, num=1, tld="co.in", stop=1, pause=0)
+            # for i in first_link:
+            #     webbrowser.open(i)
+            # result = first_link
+        # function calling to close the program
+        if "do widzenia" in query:
+            break
+        # function calling for a wikipedia search
         elif "wyszukaj" in query and "wikipedii" in query:
             speak(doYourTask.searchInWikipedia(query))
-
+        # function to call a weather forecast
         elif "prognoza pogody" in query:
             speak(doYourTask.checkWeatherForecast(query))
-
+        # function calling number of current covid-19 infections
         elif "zakażeń covid" in query:
             speak(doYourTask.checkCovidStatistics(query))
