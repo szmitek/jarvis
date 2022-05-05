@@ -4,6 +4,7 @@ import datetime
 import webbrowser
 
 
+import doYourTask
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices') #JAK KTOS USTAWI GLOS JARVISA MA ODEMNIE PIWO ~~ Szmitek
@@ -53,4 +54,13 @@ if __name__ == "__main__":
         if 'otwórz youtube' in query:
             webbrowser.open("youtube.com")
 
+        if "do widzenia" in query: break
 
+        elif "wyszukaj" in query and "wikipedii" in query:
+            speak(doYourTask.searchInWikipedia(query))
+
+        elif "prognoza pogody" in query:
+            speak(doYourTask.checkWeatherForecast(query))
+
+        elif "zakażeń covid" in query:
+            speak(doYourTask.checkCovidStatistics(query))
