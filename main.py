@@ -55,6 +55,12 @@ if __name__ == "__main__":
         if 'otwórz youtube' in query:
             webbrowser.open("youtube.com")
 
+        elif 'wyszukaj w youtube' in query:
+            speak("szukam")
+            url = 'https://www.youtube.com/search?q='
+            search_url = url + query
+            webbrowser.open(search_url)
+
         # function calling to google
         elif 'otwórz google' in query:
             webbrowser.open("google.com")
