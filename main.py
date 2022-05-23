@@ -51,12 +51,17 @@ if __name__ == "__main__":
 
         if "do widzenia" in query: break
 
-        elif "Wikipedii" in query:
-            print("hello")
+        # składnia: {słowo związane z wyszukiwaniem} {co chcemy wyszukać} na wikipedii
+        elif "wikipedii" in query:
             speak(doYourTask.searchInWikipedia(query))
 
+        # prognoza pogody w {miejsce}
         elif "prognoza pogody" in query:
             speak(doYourTask.checkWeatherForecast(query))
-        
+
+        # {cokolwiek} zakażen covid w
+        # województwo {województwo}
+        # powiat {powiat}
+        # w innym przypadku będą dla całego kraju        
         elif "zakażeń covid" in query:
             speak(doYourTask.checkCovidStatistics(query))

@@ -4,7 +4,6 @@ import wikipedia #pip install wikipedia
 import requests
 
 def searchInWikipedia(query):
-    print("searchInWikipedia")
     wikipedia.set_lang("pl")
     listWikiQuery = query.split(" ")[1:-2]
     stringWikiQuery = " ".join(listWikiQuery)
