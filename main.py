@@ -65,3 +65,6 @@ if __name__ == "__main__":
         # w innym przypadku będą dla całego kraju        
         elif "zakażeń covid" in query:
             speak(doYourTask.checkCovidStatistics(query))
+
+        elif "ranking" in query and ("filmów" in query or "seriali" in query):
+            speak(doYourTask.checkTrendingMovies(query))
