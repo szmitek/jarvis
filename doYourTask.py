@@ -4,6 +4,7 @@ import wikipedia #pip install wikipedia
 import requests
 
 def searchInWikipedia(query):
+    print("searchInWikipedia")
     wikipedia.set_lang("pl")
     listWikiQuery = query.split(" ")[1:-2]
     stringWikiQuery = " ".join(listWikiQuery)
@@ -43,7 +44,7 @@ def checkCovidStatistics(query):
     try:
         req = requests.get(get_req)
     except Exception as e:
-        textToRead = "Przykro mi. Nie znalazłem tego czego o co prosisz."
+        textToRead = "Przykro mi. Nie znalazłem tego o co prosisz."
     else:
         req_json = req.json()
         if type == "kraj":
