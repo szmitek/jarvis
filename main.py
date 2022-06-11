@@ -22,6 +22,7 @@ def welcome_function():
     hour = int(datetime.datetime.now().hour)
     if hour >= 0 and hour < 19:
         speak("Dzień dobry ser!")
+        # speak("ah shit here we go again")
     else:
         speak("Dobry wieczór ser!")
 
@@ -80,15 +81,23 @@ if __name__ == "__main__":
 
         # function calling for a wikipedia search
         elif "wyszukaj" in query and "wikipedii" in query:
+        # składnia: {słowo związane z wyszukiwaniem} {co chcemy wyszukać} na wikipedii
+        elif "wikipedii" in query:
             speak(doYourTask.searchInWikipedia(query))
 
 
         # function to call a weather forecast
+        # prognoza pogody w {miejsce}
         elif "prognoza pogody" in query:
             speak(doYourTask.checkWeatherForecast(query))
 
 
         # function calling number of current covid-19 infections
+
+        # {cokolwiek} zakażen covid w
+        # województwo {województwo}
+        # powiat {powiat}
+        # w innym przypadku będą dla całego kraju
         elif "zakażeń covid" in query:
             speak(doYourTask.checkCovidStatistics(query))
 
@@ -105,3 +114,7 @@ if __name__ == "__main__":
 
         elif 'otwórz kalkulator' in query:
             open_calculator()
+
+
+        elif "ranking" in query and ("filmów" in query or "seriali" in query):
+            speak(doYourTask.checkTrendingMovies(query))

@@ -59,3 +59,22 @@ def checkCovidStatistics(query):
             textToRead = f"jest {new_inf} nowych zakażeń w tym powiecie"
     finally:
         return textToRead
+
+
+def checkTrendingMovies(query):
+    api_key = "83a86d449fabecb4b0d43f0f19cf3ec9"
+    
+    if "filmów" in query: type = "movie"
+    elif "seriali" in query: type = "tv"
+    
+    try:
+        req = requests.get(f"https://api.themoviedb.org/3/trending/{type}/day?api_key={api_key}")
+    except Exception as e:
+        textToRead = "Przykro mi. Nie znalazłem tego czego o co prosisz."
+    else:
+        req_json = req.json()
+        name = "original_title" if type == "movie" else "original_name"
+        list_of_top = [film.get(name) for film in req_json.get("results")]
+        textToRead = "; ".join(list_of_top)
+    finally:
+        return textToRead
