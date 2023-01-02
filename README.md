@@ -25,7 +25,7 @@ Open local programs, such as PyCharm, Discord, the calculator, and Spotify
 3. (Optional) Obtain API keys for OpenWeatherMap and TheMovieDB and place them in local_files.py
 4. Modify the file paths in local_files.py to match the paths to the programs on your computer
 5. Run the jarvis.py script: python jarvis.py
-Commands
+## Commands
 * "otwórz youtube" (open YouTube)
 * "wyszukaj w youtube" (search YouTube)
 * "otwórz google" (open Google)
